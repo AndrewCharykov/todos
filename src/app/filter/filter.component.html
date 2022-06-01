@@ -1,0 +1,22 @@
+<div class="footer">
+    <span>{{(data.taskArray | todoFilter:filter.ACTIVE: customFilter).length | todoCount }}</span>
+    <div class="filters">
+        <label (click)="click(filter.ALL)">
+            <input type="radio" name="filter" value="all" checked>
+            <span>All</span>
+        </label>
+        <label (click)="click(filter.ACTIVE)">
+            <input id="demo" type="radio" name="filter" value="active">
+            <span>Active</span>
+        </label>
+        <label (click)="click(filter.COMPLETED)">
+            <input type="radio" name="filter" value="completed">
+            <span>Completed</span>
+        </label>
+        <label (click)="click(filter.CUSTOM)">
+            <input type="radio" name="filter" value="custom">
+            <span>Custom</span>
+        </label>
+    </div>
+    <button class="clear-completed" (click)="clear()">Clear completed</button>
+</div>

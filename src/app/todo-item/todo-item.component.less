@@ -1,0 +1,38 @@
+.task {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border-top: 1px solid #e6e6e6;
+  word-wrap: break-word;
+  overflow-x:hidden;//если будет мегодлинное слово, то оно просто не даст выйти за рамки
+
+  & .label {
+    padding: 15px 15px 15px 15px;
+    line-height: 1.2;
+    display: block;
+    flex-grow: 1;
+  }
+
+  & .fake{
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    padding-right: 20px;
+    position: relative; //Почитать почему у родителя релайтив а у бефор абсолют
+  }
+
+  & .destroy {
+    width: 20px;
+    height: 20px;
+    opacity: 0.4;
+    margin: auto 10px;
+    cursor: pointer;
+    display: none;
+  }
+
+  &:hover{
+    & .destroy{
+      display: block;
+    }
+  }
+}

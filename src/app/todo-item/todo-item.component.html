@@ -1,0 +1,8 @@
+<div class="task">
+  <div class="label">
+    <input *ngIf="active" (click)="change()" class= "fake" type="image"  src="../../assets/icons/free-icon-font-rec-3917710.svg">
+    <input *ngIf="!active" (click)="change()" class= "fake" type="image"  src="../../assets/icons/free-icon-font-angle-circle-down-6407157.svg">
+    <span>{{text}}</span>
+  </div>
+  <input class="destroy" (click)="delete()" type="image" src="../../assets/icons/free-icon-font-cross-3917189.svg">
+</div>
