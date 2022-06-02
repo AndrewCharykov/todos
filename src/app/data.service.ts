@@ -1,25 +1,38 @@
-import { Todo } from './todo';
+import {Todo} from './todo';
 
 export class DataService {
-  public taskArray: Todo[] = [];
+    taskArray: Todo[];
 
-  addTask(text: string) {
-    //todo spread
-    this.taskArray = [...this.taskArray, new Todo(text)];
-  }
+    constructor() {
+        let data = localStorage.getItem('data');
+        this.taskArray = [];
+        if (data) {
+            JSON.parse(data!)
+                .map((x: any) => this.taskArray.push(new Todo(x["_text"]).setActive(!!x["_active"])));
+        }
+    }
 
-  clearCompleted(){
-    this.taskArray =
-        this.taskArray.filter(todo => todo.active);
-  }
+    addTask(text: string) {
+        this.taskArray = [...this.taskArray, new Todo(text)];
+        this.updateLocalStorage(this.taskArray);    }
 
-  delete(task: Todo) {
-    this.taskArray =
-        this.taskArray.filter(todo => todo.id !== task.id);
-  }
+    clearCompleted() {
+        this.taskArray =
+            this.taskArray.filter(todo => todo.active);
+        this.updateLocalStorage(this.taskArray);    }
 
-  changeStatus(task: Todo) {
-    task.setActive(!task.active);
-    this.taskArray =[...this.taskArray];
-  }
+    delete(task: Todo) {
+        this.taskArray =
+            this.taskArray.filter(todo => todo.id !== task.id);
+        this.updateLocalStorage(this.taskArray);    }
+
+    changeStatus(task: Todo) {
+        task.setActive(!task.active);
+        this.taskArray = [...this.taskArray];
+        this.updateLocalStorage(this.taskArray);
+    }
+
+    private updateLocalStorage(arr:Todo[]){
+        localStorage.setItem('data', JSON.stringify(arr))
+    }
 }
