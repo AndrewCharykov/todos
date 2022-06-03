@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {DataService} from "./data.service";
+import {DataService} from "./services/data.service";
 import {Todo} from "./todo";
 import {Filter} from "./filter";
 import {Idata} from "./iface/idata";

@@ -1,35 +1,36 @@
-import {Todo} from './todo';
+import {DataService} from "./data.service";
+import {Todo} from "../todo";
+import {Injectable} from "@angular/core";
 
-export class DataService {
-    taskArray: Todo[];
+export class LocalstorageService extends DataService{
 
     constructor() {
+        super();
         let data = localStorage.getItem('data');
-        this.taskArray = [];
         if (data) {
             JSON.parse(data!)
                 .map((x: any) => this.taskArray.push(new Todo(x["_text"]).setActive(!!x["_active"])));
         }
     }
 
-    addTask(text: string) {
+    override addTask(text: string) {
         this.taskArray = [...this.taskArray, new Todo(text)];
         this.updateLocalStorage(this.taskArray);
     }
 
-    clearCompleted() {
+    override clearCompleted() {
         this.taskArray =
             this.taskArray.filter(todo => todo.active);
         this.updateLocalStorage(this.taskArray);
     }
 
-    delete(task: Todo) {
+    override delete(task: Todo) {
         this.taskArray =
             this.taskArray.filter(todo => todo.id !== task.id);
         this.updateLocalStorage(this.taskArray);
     }
 
-    changeStatus(task: Todo) {
+    override changeStatus(task: Todo) {
         task.setActive(!task.active);
         this.taskArray = [...this.taskArray];
         this.updateLocalStorage(this.taskArray);

@@ -8,8 +8,9 @@ import {FilterComponent} from './filter/filter.component';
 import {TodoCountPipe} from './todo-count.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TodoFilterPipe} from './todo-filter.pipe';
-import {DataService} from './data.service';
+import {DataService} from './services/data.service';
 import {CustomFilterComponent} from './custom-filter/custom-filter.component';
+import {LocalstorageService} from "./services/localstorage.service";
 
 @NgModule({
     declarations: [
@@ -26,7 +27,10 @@ import {CustomFilterComponent} from './custom-filter/custom-filter.component';
         FormsModule,
         ReactiveFormsModule
     ],
-    providers: [DataService],
+    providers: [{
+        provide: DataService,
+        useClass: LocalstorageService
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule {

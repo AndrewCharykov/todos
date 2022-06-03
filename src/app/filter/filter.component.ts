@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {DataService} from "../data.service";
+import {DataService} from "../services/data.service";
 import {Filter} from "../filter";
 import {Idata} from "../iface/idata";
 
