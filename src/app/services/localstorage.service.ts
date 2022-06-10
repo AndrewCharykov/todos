@@ -1,11 +1,11 @@
-import {DataService} from "./data.service";
+import {IDataService} from "./data.service";
 import {Todo} from "../todo";
-import {Injectable} from "@angular/core";
 
-export class LocalstorageService extends DataService{
+export class LocalstorageService implements IDataService{
+    taskArray: Todo[];
 
     constructor() {
-        super();
+        this.taskArray = [];
         let data = localStorage.getItem('data');
         if (data) {
             JSON.parse(data!)
@@ -13,24 +13,24 @@ export class LocalstorageService extends DataService{
         }
     }
 
-    override addTask(text: string) {
+    addTask(text: string) {
         this.taskArray = [...this.taskArray, new Todo(text)];
         this.updateLocalStorage(this.taskArray);
     }
 
-    override clearCompleted() {
+    clearCompleted() {
         this.taskArray =
             this.taskArray.filter(todo => todo.active);
         this.updateLocalStorage(this.taskArray);
     }
 
-    override delete(task: Todo) {
+    delete(task: Todo) {
         this.taskArray =
             this.taskArray.filter(todo => todo.id !== task.id);
         this.updateLocalStorage(this.taskArray);
     }
 
-    override changeStatus(task: Todo) {
+   changeStatus(task: Todo) {
         task.setActive(!task.active);
         this.taskArray = [...this.taskArray];
         this.updateLocalStorage(this.taskArray);

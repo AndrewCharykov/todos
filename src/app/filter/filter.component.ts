@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {DataService} from "../services/data.service";
+import {Component, EventEmitter, Inject, Output} from '@angular/core';
+import {DATA_SERVICE, IDataService} from "../services/data.service";
 import {Filter} from "../filter";
 import {Idata} from "../iface/idata";
 
@@ -9,7 +9,7 @@ import {Idata} from "../iface/idata";
   styleUrls: ['./filter.component.less']
 })
 export class FilterComponent{
-  constructor(public data: DataService) {
+  constructor(@Inject(DATA_SERVICE) public data : IDataService) {
   }
   customFilter: Idata = {substring: '', active: true};
   filter = Filter;

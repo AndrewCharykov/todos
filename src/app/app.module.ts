@@ -8,7 +8,7 @@ import {FilterComponent} from './filter/filter.component';
 import {TodoCountPipe} from './todo-count.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TodoFilterPipe} from './todo-filter.pipe';
-import {DataService} from './services/data.service';
+import {DATA_SERVICE} from './services/data.service';
 import {CustomFilterComponent} from './custom-filter/custom-filter.component';
 import {LocalstorageService} from "./services/localstorage.service";
 
@@ -25,10 +25,10 @@ import {LocalstorageService} from "./services/localstorage.service";
     imports: [
         BrowserModule,
         FormsModule,
-        ReactiveFormsModule
-    ],
+        ReactiveFormsModule],
+
     providers: [{
-        provide: DataService,
+        provide: DATA_SERVICE,
         useClass: LocalstorageService
     }],
     bootstrap: [AppComponent]

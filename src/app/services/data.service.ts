@@ -1,28 +1,19 @@
 import {Todo} from '../todo';
+import {InjectionToken} from "@angular/core";
 
-export class DataService {
-    taskArray: Todo[];
+export const DATA_SERVICE = new InjectionToken<IDataService>('DATA_SERVICE');
 
-    constructor() {
-        this.taskArray = [];
-    }
+export interface IDataService {
+    taskArray: Todo[]
 
-    addTask(text: string) {
-        this.taskArray = [...this.taskArray, new Todo(text)];
-    }
+    addTask(text: string): void;
 
-    clearCompleted() {
-        this.taskArray =
-            this.taskArray.filter(todo => todo.active);
-    }
+    delete(task: Todo): void;
 
-    delete(task: Todo) {
-        this.taskArray =
-            this.taskArray.filter(todo => todo.id !== task.id);
-    }
+    changeStatus(task: Todo): void;
 
-    changeStatus(task: Todo) {
-        task.setActive(!task.active);
-        this.taskArray = [...this.taskArray];
-    }
+    clearCompleted(): void;
+
+    //TODO добавить еще один метод получения списка данных
 }
+
