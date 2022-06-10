@@ -2,3 +2,6 @@
 /dist/
 /.angular/
 /.idea/
+/src/back/node_modules/
+/src/front/node_modules/
+/src/front/.angular/
