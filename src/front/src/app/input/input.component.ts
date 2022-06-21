@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {DataService} from "../data.service";
+import {Component, Inject, Input} from '@angular/core';
+import {DATA_SERVICE, IDataService} from "../services/data.service";
 
 @Component({
   selector: 'app-input',
@@ -8,7 +8,7 @@ import {DataService} from "../data.service";
 })
 export class InputComponent {
 
-  constructor(private data: DataService) {
+  constructor(@Inject(DATA_SERVICE) public data : IDataService) {
   }
 
   @Input()
