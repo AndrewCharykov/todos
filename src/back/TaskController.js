@@ -1,4 +1,3 @@
-import Task from "./task.js";
 import TaskService from "./TaskService.js";
 
 class TaskController{
