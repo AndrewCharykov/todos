@@ -14,5 +14,5 @@ export interface IDataService {
 
   clearCompleted(): void;
 
-  //TODO добавить еще один метод получения списка данных
+  // добавить еще один метод получения списка данных згыр
 }
