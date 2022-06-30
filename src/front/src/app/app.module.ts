@@ -10,7 +10,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TodoFilterPipe} from './todo-filter.pipe';
 import {DATA_SERVICE} from './services/data.service';
 import {CustomFilterComponent} from './custom-filter/custom-filter.component';
-import {LocalstorageService} from "./services/localstorage.service";
+import {HttpService} from "./services/http.service";
+import {HttpClientModule} from "@angular/common/http";
+import { LoaderComponent } from './loader/loader.component';
+import {BusinessLogicService} from "./services/business.logic.service";
 
 @NgModule({
     declarations: [
@@ -20,16 +23,18 @@ import {LocalstorageService} from "./services/localstorage.service";
         FilterComponent,
         TodoCountPipe,
         TodoFilterPipe,
-        CustomFilterComponent
+        CustomFilterComponent,
+        LoaderComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule
     ],
         providers: [{
             provide: DATA_SERVICE,
-            useClass: LocalstorageService
+            useClass: BusinessLogicService
         }],
     bootstrap: [AppComponent]
 })

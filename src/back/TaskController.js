@@ -2,6 +2,7 @@ import TaskService from "./TaskService.js";
 
 class TaskController{
     async create(req,res){
+        console.log(typeof req.body)
         try {
             const task = await TaskService.create(req.body);
             res.json(task)

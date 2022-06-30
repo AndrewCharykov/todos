@@ -2,9 +2,7 @@ import mongoose from "mongoose";
 
 const Task = new mongoose.Schema({
     title:{type:String, required:true},
-    status:{type:Boolean, required:true},
-    content:{type:String, required:true},
-    picture:{type:String}
+    status:{type:Boolean, required:true}
 })
 
 export default mongoose.model('Task',Task)

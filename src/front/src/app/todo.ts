@@ -1,12 +1,12 @@
 export class Todo {
     private _text: string;
     private _active: boolean;
-    private _id: number;
+    private _id: string;
 
     constructor(text: string) {
         this._text = text;
         this._active = true;
-        this._id = new Date().getTime();
+        this._id = new Date().getTime().toString();
     }
 
     setText(value: string): Todo {
@@ -19,7 +19,7 @@ export class Todo {
         return this;
     }
 
-    setId(value: number): Todo {
+    setId(value: string): Todo {
         this._id = value;
         return this;
     }
@@ -32,7 +32,7 @@ export class Todo {
         return this._active;
     }
 
-    get id(): number {
+    get id(): string {
         return this._id;
     }
 }
