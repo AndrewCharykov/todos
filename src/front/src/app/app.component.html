@@ -1,13 +1,20 @@
-<app-input placeholder="What needs to be done?" inputClass="new-todo"></app-input>
-<ul class="list">
-  <li class="task" *ngFor="let task of (data.taskArray | todoFilter: filter : customFilter)">
-    <app-todo-item
-            (status)="change(task)"
-            (destroy)="delete(task)"
-            [text]="task.text"
-            [active]="task.active"
-    ></app-todo-item>
-  </li>
-</ul>
-<app-filter *ngIf="data.taskArray.length !== 0" (f)="changeFilter($event)"></app-filter>
-<app-custom-filter *ngIf="filter === f.CUSTOM" (customFilter)="setCustomFilter($event)" ></app-custom-filter>
+<ng-container *ngIf="isLoading">
+  <app-loader></app-loader>
+</ng-container>
+
+<ng-container *ngIf="!isLoading">
+  <app-input placeholder="What needs to be done?" inputClass="new-todo"></app-input>
+  <ul class="list">
+    <li class="task" *ngFor="let task of (data.taskArray | todoFilter: filter : customFilter)">
+      <app-todo-item
+              (status)="change(task)"
+              (destroy)="delete(task)"
+              [text]="task.text"
+              [active]="task.active"
+      ></app-todo-item>
+    </li>
+  </ul>
+  <app-filter *ngIf="data.taskArray.length !== 0" (f)="changeFilter($event)"></app-filter>
+  <app-custom-filter *ngIf="filter === f.CUSTOM" (customFilter)="setCustomFilter($event)" ></app-custom-filter>
+</ng-container>
+

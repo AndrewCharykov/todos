@@ -1,17 +1,18 @@
 import {IDataService} from "./data.service";
 import {Todo} from "../todo";
+import {Observable} from "rxjs";
 
 export class LocalstorageService implements IDataService{
-    taskArray: Todo[];
+    taskArray: Todo[]=[];
 
     constructor() {
-        this.taskArray = [];
-        let data = localStorage.getItem('data');
-        if (data) {
-            JSON.parse(data!)
-                .map((x: any) => this.taskArray.push(new Todo(x["_text"]).setActive(!!x["_active"])));
-        }
-    }
+       // this.taskArray = [];
+    //     let data = localStorage.getItem('data');
+    //     if (data) {
+    //         JSON.parse(data!)
+    //             .map((x: any) => this.taskArray.push(new Todo(x["_text"]).setActive(!!x["_active"])));
+    //     }
+     }
 
     addTask(text: string) {
         this.taskArray = [...this.taskArray, new Todo(text)];
@@ -39,4 +40,14 @@ export class LocalstorageService implements IDataService{
     private updateLocalStorage(arr: Todo[]) {
         localStorage.setItem('data', JSON.stringify(arr))
     }
+
+    getTasks(): Observable<Todo[]> {
+        return new Observable<Todo[]>(observer =>{
+            setTimeout(() => {
+                console.log('hi i\'m timeout');
+            }, 5000);
+            observer.next(this.taskArray);
+        });
+    }
+
 }
